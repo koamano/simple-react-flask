@@ -42,9 +42,9 @@ jobs:
       with:
         namespace: simple-test
         manifests: |
-          manifests/full_calc.yaml
+          manifests/deployment.yaml
+          manifests/service.yaml
         images: |
-          crkoamano.azurecr.io/akskoamano-react:${{ github.sha }}
           crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}
         imagepullsecrets: |
           akskoamanodockerauth
