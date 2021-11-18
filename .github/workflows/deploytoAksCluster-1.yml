@@ -45,6 +45,6 @@ jobs:
           manifests/deployment-1.yml
           manifests/service-1.yml
         images: |
-          crkoamano.azurecr.io/akskoamano:${{ github.sha }}
+          crkoamano.azurecr.io/akskoamano-react:${{ github.sha }}
         imagepullsecrets: |
           akskoamanodockerauth
