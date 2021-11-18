@@ -24,10 +24,10 @@ jobs:
     
     - name: Create namespace
       run: |
-        namespacePresent=`kubectl get namespace | grep simple-test | wc -l`
+        namespacePresent=`kubectl get namespace | grep simple | wc -l`
         if [ $namespacePresent -eq 0 ]
         then
-            echo `kubectl create namespace simple-test`
+            echo `kubectl create namespace simple`
         fi
 
     - uses: azure/k8s-create-secret@v1
@@ -42,8 +42,8 @@ jobs:
       with:
         namespace: simple-test
         manifests: |
-          manifests/deployment.yaml
-          manifests/service.yaml
+          manifests/deployment.yml
+          manifests/service.yml
         images: |
           crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}
         imagepullsecrets: |
