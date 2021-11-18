@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: "akskoamano-ef7a"
-          image: "crkoamano.azurecr.io/akskoamano"
+          image: "crkoamano.azurecr.io/akskoamano-flask"
           ports:
           - containerPort: 80
