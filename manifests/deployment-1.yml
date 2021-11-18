@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: "akskoamano-1629"
-          image: "crkoamano.azurecr.io/akskoamano"
+          image: "crkoamano.azurecr.io/akskoamano-react"
           ports:
           - containerPort: 80
