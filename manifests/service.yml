@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: "akskoamano-ef7a"
+    name: "koamano-api"
     labels:
-        app: "akskoamano-ef7a"
+        app: "koamano-api"
 spec:
     type: LoadBalancer
     ports:
@@ -12,4 +12,20 @@ spec:
       protocol: TCP
       name: http
     selector:
-        app: "akskoamano-ef7a"
+        app: "koamano-api"
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: "koamano-website"
+    labels:
+        app: "koamano-website"
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+    selector:
+        app: "koamano-website"
