@@ -55,7 +55,7 @@ export default function App() {
                 </div>
                 <input
                     type="submit"
-                    value="Calculate!"
+                    value="Calculate 0.0.1!"
                     className="button"
                 ></input>
             </form>
