@@ -1,15 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: "akskoamano-56ef"
+    name: "akskoamano-website"
     labels:
-        app: "akskoamano-56ef"
+        app: "akskoamano-website"
 spec:
-    type: LoadBalancer
     ports:
-    - port: 80
-      targetPort: 80
-      protocol: TCP
-      name: http
+    - port: 3000
     selector:
-        app: "akskoamano-56ef"
+        app: "akskoamano-website"
