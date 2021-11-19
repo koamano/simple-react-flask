@@ -44,7 +44,7 @@ jobs:
         manifests: |
           manifests/deployment-flask.yml
           manifests/service-flask.yml
-        # images: |
-        #   crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}
+        images: |
+         crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}
         imagepullsecrets: |
           akskoamanodockerauth
