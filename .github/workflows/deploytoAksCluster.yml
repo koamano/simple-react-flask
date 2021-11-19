@@ -15,7 +15,7 @@ jobs:
       id: build-image
       run: |
         docker build "$GITHUB_WORKSPACE/calculator_react" -f  "calculator_react/Dockerfile" -t crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }} --label dockerfile-path=calculator_react/Dockerfile
-        docker push crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}  
+        docker push crkoamano.azurecr.io/akskoamano-react:${{ github.sha }}  
     
     - uses: azure/k8s-set-context@v1
       with:
@@ -44,7 +44,7 @@ jobs:
         manifests: |
           manifests/deployment-react.yml
           manifests/service-react.yml
-        images: |
-          crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}
+        # images: |
+        #   crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}
         imagepullsecrets: |
           akskoamanodockerauth
