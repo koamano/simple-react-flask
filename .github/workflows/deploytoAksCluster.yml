@@ -42,8 +42,8 @@ jobs:
       with:
         namespace: simple
         manifests: |
-          manifests/deployment.yml
-          manifests/service.yml
+          manifests/deployment-flask.yml
+          manifests/service-flask.yml
         images: |
           crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}
         imagepullsecrets: |

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: "akskoamano-1629"
+    name: "koamano-website"
     labels:
-        app: "akskoamano-1629"
+        app: "koamano-website"
 spec:
     type: LoadBalancer
     ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
     selector:
-        app: "akskoamano-1629"
+        app: "koamano-website"
