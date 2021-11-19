@@ -10,41 +10,47 @@ jobs:
         login-server: crkoamano.azurecr.io
         username: ${{ secrets.acr_crkoamano_username }}
         password: ${{ secrets.acr_crkoamano_password }}
-    
+
     - name: Build and push react image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/calculator_flask" -f  "calculator_flask/Dockerfile" -t crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }} --label dockerfile-path=calculator_react/Dockerfile
-        docker push crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}  
+        docker build "$GITHUB_WORKSPACE/calculator_flask" -f  "calculator_flask/Dockerfile" -t crkoamano.azurecr.io/akskoamano-flask:0.0.1 --label dockerfile-path=calculator_react/Dockerfile
+        docker push crkoamano.azurecr.io/akskoamano-flask:0.0.1  
     
-    - uses: azure/k8s-set-context@v1
-      with:
-         kubeconfig: ${{ secrets.aks_akskoamano_kubeConfig }}
-      id: login
+    # - name: Build and push react image to ACR
+    #   id: build-image
+    #   run: |
+    #     docker build "$GITHUB_WORKSPACE/calculator_flask" -f  "calculator_flask/Dockerfile" -t crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }} --label dockerfile-path=calculator_react/Dockerfile
+    #     docker push crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}  
     
-    - name: Create namespace
-      run: |
-        namespacePresent=`kubectl get namespace | grep simple | wc -l`
-        if [ $namespacePresent -eq 0 ]
-        then
-            echo `kubectl create namespace simple`
-        fi
+    # - uses: azure/k8s-set-context@v1
+    #   with:
+    #      kubeconfig: ${{ secrets.aks_akskoamano_kubeConfig }}
+    #   id: login
+    
+    # - name: Create namespace
+    #   run: |
+    #     namespacePresent=`kubectl get namespace | grep simple | wc -l`
+    #     if [ $namespacePresent -eq 0 ]
+    #     then
+    #         echo `kubectl create namespace simple`
+    #     fi
 
-    - uses: azure/k8s-create-secret@v1
-      with:
-        namespace: simple
-        container-registry-url: crkoamano.azurecr.io
-        container-registry-username: ${{ secrets.acr_crkoamano_username }}
-        container-registry-password: ${{ secrets.acr_crkoamano_password }}
-        secret-name: akskoamanodockerauth
+    # - uses: azure/k8s-create-secret@v1
+    #   with:
+    #     namespace: simple
+    #     container-registry-url: crkoamano.azurecr.io
+    #     container-registry-username: ${{ secrets.acr_crkoamano_username }}
+    #     container-registry-password: ${{ secrets.acr_crkoamano_password }}
+    #     secret-name: akskoamanodockerauth
        
-    - uses: azure/k8s-deploy@v1.2
-      with:
-        namespace: simple
-        manifests: |
-          manifests/deployment-flask.yml
-          manifests/service-flask.yml
-        images: |
-         crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}
-        imagepullsecrets: |
-          akskoamanodockerauth
+    # - uses: azure/k8s-deploy@v1.2
+    #   with:
+    #     namespace: simple
+    #     manifests: |
+    #       manifests/deployment-flask.yml
+    #       manifests/service-flask.yml
+    #     images: |
+    #      crkoamano.azurecr.io/akskoamano-flask:${{ github.sha }}
+    #     imagepullsecrets: |
+    #       akskoamanodockerauth
